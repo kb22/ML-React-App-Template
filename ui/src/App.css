@@ -8,15 +8,32 @@ html, body {
 
 .content {
   margin: auto;
-  width: auto;
+  margin-top: 20px;
+  width: 70%;
   height: auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .title {
+  padding-top: 100px;
   text-align: center;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 4em;
   letter-spacing: 0.15rem;
   color: #fff;
+}
+
+label {
+  color: #333;
+}
+
+.result-container {
+  text-align: center;
+  font-weight: 600;
+  font-size: 4em;
+  letter-spacing: 0.15rem;
+  padding: 20px 0 0;
 }

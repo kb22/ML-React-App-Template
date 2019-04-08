@@ -8,7 +8,38 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: false,
+      result: ""
+    };
+  }
+
+  handlePredictClick = (event) => {
+    this.setState({ isLoading: true });
+    fetch('https://5e953677-f06d-4229-a8f7-b17679c289b8.mock.pstmn.io/model/predict')
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          result: res['result'],
+          isLoading: false
+        });
+      });
+  }
+
+  handleCancelClick = (event) => {
+    this.setState({ result: "" });
+  }
+
   render() {
+
+    const isLoading = this.state.isLoading;
+    const result = this.state.result;
+    const resultPredicted = this.state.resultPredicted;
+
     return (
       <Container>
         <div>
@@ -17,17 +48,72 @@ class App extends Component {
         <div className="content">
           <Form>
             <Form.Row>
-              <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+              <Form.Group as={Col} controlId="formText1">
+                <Form.Label>Text Field 1</Form.Label>
+                <Form.Control type="text" placeholder="Text Field 1" />
               </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+              <Form.Group as={Col} controlId="formText2">
+                <Form.Label>Text Field 2</Form.Label>
+                <Form.Control type="text" placeholder="Text Field 2" />
               </Form.Group>
             </Form.Row>
+            <Form.Row>
+              <Form.Group as={Col} controlId="FormSelect1">
+                <Form.Label>Select 1</Form.Label>
+                <Form.Control as="select">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </Form.Control>
+              </Form.Group>
+              <Form.Group as={Col} controlId="FormSelect2">
+                <Form.Label>Select 2</Form.Label>
+                <Form.Control as="select">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </Form.Control>
+              </Form.Group>
+              <Form.Group as={Col} controlId="FormSelect3">
+                <Form.Label>Select 3</Form.Label>
+                <Form.Control as="select">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </Form.Control>
+              </Form.Group>
+            </Form.Row>
+            <Row>
+              <Col>
+                <Button
+                  block
+                  variant="success"
+                  disabled={isLoading}
+                  onClick={!isLoading ? this.handlePredictClick : null}>
+                  { isLoading ? 'Making prediction' : 'Predict' }
+                </Button>
+              </Col>
+              <Col>
+                <Button
+                  block
+                  variant="danger"
+                  disabled={isLoading}
+                  onClick={this.handleCancelClick}>
+                  Reset predictions
+                </Button>
+              </Col>
+            </Row>
           </Form>
+          {result === "" ? null :
+            (<Row>
+              <Col className="result-container">
+                <h5 id="result">{result}</h5>
+              </Col>
+            </Row>)
+          }
         </div>
       </Container>
     );
@@ -35,60 +121,3 @@ class App extends Component {
 }
 
 export default App;
-
-      // <div className="App">
-      //   <div className="title">
-      //     <h1>ML App</h1>
-      //   </div>
-      //   <Form>
-      //     <Form.Row>
-      //       <Form.Group as={Col} controlId="formGridEmail">
-      //         <Form.Label>Email</Form.Label>
-      //         <Form.Control type="email" placeholder="Enter email" />
-      //       </Form.Group>
-
-      //       <Form.Group as={Col} controlId="formGridPassword">
-      //         <Form.Label>Password</Form.Label>
-      //         <Form.Control type="password" placeholder="Password" />
-      //       </Form.Group>
-      //     </Form.Row>
-
-      //     <Form.Group controlId="formGridAddress1">
-      //       <Form.Label>Address</Form.Label>
-      //       <Form.Control placeholder="1234 Main St" />
-      //     </Form.Group>
-
-      //     <Form.Group controlId="formGridAddress2">
-      //       <Form.Label>Address 2</Form.Label>
-      //       <Form.Control placeholder="Apartment, studio, or floor" />
-      //     </Form.Group>
-
-      //     <Form.Row>
-      //       <Form.Group as={Col} controlId="formGridCity">
-      //         <Form.Label>City</Form.Label>
-      //         <Form.Control />
-      //       </Form.Group>
-
-      //       <Form.Group as={Col} controlId="formGridState">
-      //         <Form.Label>State</Form.Label>
-      //         <Form.Control as="select">
-      //           <option>Choose...</option>
-      //           <option>...</option>
-      //         </Form.Control>
-      //       </Form.Group>
-
-      //       <Form.Group as={Col} controlId="formGridZip">
-      //         <Form.Label>Zip</Form.Label>
-      //         <Form.Control />
-      //       </Form.Group>
-      //     </Form.Row>
-
-      //     <Form.Group id="formGridCheckbox">
-      //       <Form.Check type="checkbox" label="Check me out" />
-      //     </Form.Group>
-
-      //     <Button variant="primary" type="submit">
-      //       Submit
-      //     </Button>
-      //   </Form>;
-      // </div>
