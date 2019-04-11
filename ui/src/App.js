@@ -36,9 +36,10 @@ class App extends Component {
   }
 
   handlePredictClick = (event) => {
-    const formData = this.state.formData
+    const formData = this.state.formData;
+    console.log(formData);
     this.setState({ isLoading: true });
-    fetch('https://35d5b07c-11b5-4b11-b1a6-685a89699e54.mock.pstmn.io/model/prediction', 
+    fetch('http://127.0.0.1:5000/prediction/', 
       {
         headers: {
           'Accept': 'application/json',
@@ -47,10 +48,10 @@ class App extends Component {
         method: 'POST',
         body: JSON.stringify(formData)
       })
-      .then(res => res.json())
-      .then(res => {
+      .then(response => response.json())
+      .then(response => {
         this.setState({
-          result: res['result'],
+          result: response.result,
           isLoading: false
         });
       });
@@ -68,7 +69,7 @@ class App extends Component {
     return (
       <Container>
         <div>
-          <h1 className="title">This is a title</h1>
+          <h1 className="title">ML React App</h1>
         </div>
         <div className="content">
           <Form>
