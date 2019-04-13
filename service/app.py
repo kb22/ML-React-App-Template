@@ -27,7 +27,7 @@ model = app.model('Prediction params',
 				  							description="Select 3", 
     					  				 	help="Select 3 cannot be blank")})
 
-classifier = joblib.load('classifier.joblib')
+# classifier = joblib.load('classifier.joblib')
 
 @name_space.route("/")
 class MainClass(Resource):
@@ -44,11 +44,11 @@ class MainClass(Resource):
 		try: 
 			formData = request.json
 			data = [val for val in formData.values()]
-			prediction = classifier.predict(data)
+			# prediction = classifier.predict(data)
 			response = jsonify({
 				"statusCode": 200,
 				"status": "Prediction made",
-				"result": "Prediction: " + str(prediction)
+				"result": "Prediction: " + str(data)
 				})
 			response.headers.add('Access-Control-Allow-Origin', '*')
 			return response
