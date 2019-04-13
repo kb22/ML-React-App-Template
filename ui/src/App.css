@@ -37,3 +37,7 @@ label {
   letter-spacing: 0.15rem;
   padding: 20px 0 0;
 }
+
+#result {
+  color: #000;
+}
