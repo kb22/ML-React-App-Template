@@ -13,21 +13,18 @@ app = Api(app = flask_app,
 name_space = app.namespace('prediction', description='Prediction APIs')
 
 model = app.model('Prediction params', 
-				  {'textField1': fields.String(required = True, 
-				  							   description="Text Field 1", 
-    					  				 	   help="Text Field 1 cannot be blank"),
-				  'textField2': fields.String(required = True, 
-				  							   description="Text Field 2", 
-    					  				 	   help="Text Field 2 cannot be blank"),
-				  'select1': fields.Integer(required = True, 
-				  							description="Select 1", 
-    					  				 	help="Select 1 cannot be blank"),
-				  'select2': fields.Integer(required = True, 
-				  							description="Select 2", 
-    					  				 	help="Select 2 cannot be blank"),
-				  'select3': fields.Integer(required = True, 
-				  							description="Select 3", 
-    					  				 	help="Select 3 cannot be blank")})
+				  {'sepalLength': fields.Float(required = True, 
+				  							   description="Sepal Length", 
+    					  				 	   help="Sepal Length cannot be blank"),
+				  'sepalWidth': fields.Float(required = True, 
+				  							   description="Sepal Width", 
+    					  				 	   help="Sepal Width cannot be blank"),
+				  'petalLength': fields.Float(required = True, 
+				  							description="Petal Length", 
+    					  				 	help="Petal Length cannot be blank"),
+				  'petalWidth': fields.Float(required = True, 
+				  							description="Petal Width", 
+    					  				 	help="Petal Width cannot be blank")})
 
 classifier = joblib.load('classifier.joblib')
 
