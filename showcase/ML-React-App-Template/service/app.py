@@ -7,20 +7,20 @@ import sys
 flask_app = Flask(__name__)
 app = Api(app = flask_app, 
 		  version = "1.0", 
-		  title = "Iris Plant identifier", 
-		  description = "Predict the type of iris plant")
+		  title = "Flight Delay Predictor", 
+		  description = "Predict if your flight will be delayed")
 
 name_space = app.namespace('prediction', description='Prediction APIs')
 
 model = app.model('Prediction params', 
 				  {'sepalLength': fields.Float(required = True, 
-				  							   description="Sepal Length", 
+				  							   description="Day of the Week", 
     					  				 	   help="Sepal Length cannot be blank"),
 				  'sepalWidth': fields.Float(required = True, 
-				  							   description="Sepal Width", 
+				  							   description="Origin", 
     					  				 	   help="Sepal Width cannot be blank"),
 				  'petalLength': fields.Float(required = True, 
-				  							description="Petal Length", 
+				  							description="Time", 
     					  				 	help="Petal Length cannot be blank"),
 				  'petalWidth': fields.Float(required = True, 
 				  							description="Petal Width", 
@@ -44,11 +44,11 @@ class MainClass(Resource):
 			formData = request.json
 			data = [val for val in formData.values()]
 			prediction = classifier.predict(np.array(data).reshape(1, -1))
-			types = { 0: "Iris Setosa", 1: "Iris Versicolour ", 2: "Iris Virginica"}
+			types = { 0: "ON TIME", 1: "LATE ", 2: "Iris Virginica"}
 			response = jsonify({
 				"statusCode": 200,
 				"status": "Prediction made",
-				"result": "The type of iris plant is: " + types[prediction[0]]
+				"result": "My flight will be " + types[prediction[0]]
 				})
 			response.headers.add('Access-Control-Allow-Origin', '*')
 			return response
