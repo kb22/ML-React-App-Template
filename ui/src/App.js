@@ -16,10 +16,15 @@ class App extends Component {
       isLoading: false,
       formData: {
         textfield1: '',
-        textfield2: '',
-        select1: 1,
-        select2: 1,
-        select3: 1
+          textfield2: '',
+          textfield3: '',
+          select1: 0,
+          select2: 0,
+          select3: 0,
+          select4: 0,
+          select5: 0,
+          select6: 0,
+          select7: 0
       },
       result: ""
     };
@@ -68,70 +73,138 @@ class App extends Component {
     return (
       <Container>
         <div>
-          <h1 className="title">ML React App</h1>
+          <h1 className="title">Edu Path Recommender System</h1>
         </div>
         <div className="content">
           <Form>
             <Form.Row>
               <Form.Group as={Col}>
-                <Form.Label>Text Field 1</Form.Label>
+                <Form.Label>Tawjihi Mark</Form.Label>
                 <Form.Control 
                   type="text" 
-                  placeholder="Text Field 1" 
+                  placeholder="Tawjihi mark" 
                   name="textfield1"
                   value={formData.textfield1}
                   onChange={this.handleChange} />
               </Form.Group>
               <Form.Group as={Col}>
-                <Form.Label>Text Field 2</Form.Label>
+                <Form.Label>Physics Mark</Form.Label>
                 <Form.Control 
                   type="text" 
-                  placeholder="Text Field 2" 
+                  placeholder="Physics Mark" 
                   name="textfield2"
                   value={formData.textfield2}
                   onChange={this.handleChange} />
-              </Form.Group>
-            </Form.Row>
-            <Form.Row>
+                 </Form.Group>
+                  <Form.Group as={Col}>
+                            <Form.Label>Math Mark</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Math Mark"
+                                name="textfield3"
+                                value={formData.textfield3}
+                                onChange={this.handleChange} />
+                        </Form.Group>
+           
               <Form.Group as={Col}>
-                <Form.Label>Select 1</Form.Label>
+                <Form.Label>Gender</Form.Label>
                 <Form.Control 
                   as="select"
                   value={formData.select1}
                   name="select1"
                   onChange={this.handleChange}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
+                                <option>M</option>
+                                <option>F</option>
+                 
                 </Form.Control>
-              </Form.Group>
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
               <Form.Group as={Col}>
-                <Form.Label>Select 2</Form.Label>
+               <Form.Label>Do you have artistic inclinations</Form.Label>
                 <Form.Control 
                   as="select"
                   value={formData.select2}
                   name="select2"
                   onChange={this.handleChange}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
+                                <option>NO</option>
+                                <option>Yes</option>
+
+              
                 </Form.Control>
-              </Form.Group>
+                        </Form.Group>
+                    
               <Form.Group as={Col}>
-                <Form.Label>Select 3</Form.Label>
+                <Form.Label>Do you have Analysis inclinations</Form.Label>
                 <Form.Control 
                   as="select"
                   value={formData.select3}
                   name="select3"
                   onChange={this.handleChange}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
+                                <option>NO</option>
+                                <option>Yes</option>
+
                 </Form.Control>
-              </Form.Group>
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Group as={Col}>
+                            <Form.Label>Do you have Architecture inclinations</Form.Label>
+                            <Form.Control
+                                as="select"
+                                value={formData.select4}
+                                name="select4"
+                                onChange={this.handleChange}>
+                                <option>NO</option>
+                                <option>Yes</option>
+
+                            </Form.Control>
+                        </Form.Group>
+                   
+                        <Form.Group as={Col}>
+                            <Form.Label>Do you have electronic inclinations</Form.Label>
+                            <Form.Control
+                                as="select"
+                                value={formData.select5}
+                                name="select5"
+                                onChange={this.handleChange}>
+                                <option>NO</option>
+                                <option>Yes</option>
+
+                              
+                            </Form.Control>
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+
+                        <Form.Group as={Col}>
+                            <Form.Label>Do you have Mechanic inclinations</Form.Label>
+                            <Form.Control
+                                as="select"
+                                value={formData.select6}
+                                name="select6"
+                                onChange={this.handleChange}>
+                                <option>NO</option>
+                                <option>Yes</option>
+                                
+                            </Form.Control>
+                        </Form.Group>
+                   
+
+                        <Form.Group as={Col}>
+                            <Form.Label>Do you have Workout inclinations</Form.Label>
+                            <Form.Control
+                                as="select"
+                                value={formData.select7}
+                                name="select7"
+                                onChange={this.handleChange}>
+                                <option>NO</option>
+                                <option>Yes</option>
+
+                            </Form.Control>
+                        </Form.Group>
+                        </Form.Row>
+            <Form.Row>
             </Form.Row>
             <Row>
               <Col>
@@ -140,7 +213,7 @@ class App extends Component {
                   variant="success"
                   disabled={isLoading}
                   onClick={!isLoading ? this.handlePredictClick : null}>
-                  { isLoading ? 'Making prediction' : 'Predict' }
+                  { isLoading ? 'Making prediction' : 'Recommend' }
                 </Button>
               </Col>
               <Col>
@@ -149,7 +222,7 @@ class App extends Component {
                   variant="danger"
                   disabled={isLoading}
                   onClick={this.handleCancelClick}>
-                  Reset prediction
+                  Reset Recommendation
                 </Button>
               </Col>
             </Row>
